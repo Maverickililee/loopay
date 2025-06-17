@@ -8,7 +8,7 @@ import { FaCartPlus } from 'react-icons/fa6';
 import axiosServerSide from '@/Api/axiosServerSide';
 import Pagination from '@/components/ui/Pagination';
 
-async function getData(page = 0,search="",fieldfilter=[] ,  category) {
+async function getData(page = 0,search,fieldfilter=[] ,  category) {
   try {
        const response = await axiosServerSide.post(`adv/TourismSiteListClient/`, {
       sort: "id",
@@ -17,7 +17,7 @@ async function getData(page = 0,search="",fieldfilter=[] ,  category) {
       is_deleted: false,
       search,
       filters: [],
-      category,
+      category:category,
       fieldfilter,
     });
 
@@ -30,13 +30,11 @@ async function getData(page = 0,search="",fieldfilter=[] ,  category) {
 
 export default async function AdvPage({params ,searchParams }) {
   const { id  } = await params;
-  const search = await searchParams?.search;
+const search = await searchParams?.search;
   const searches = search ? [{ column: "title", value: search }] : [];
-  const data = await getData(id  ,searches  );
+
+const data = await getData(id, searches, [],);
    
-
-  console.log(data);
-
 
 
  
@@ -111,7 +109,7 @@ export default async function AdvPage({params ,searchParams }) {
       <button className='products-list-card-cart'>
         <FaCartPlus className='products-list-card-cart-icon'/>
       </button>
-      <Link className='products-list-card-btn' href={`/product/${i.english_title}`} >
+      <Link className='products-list-card-btn' href={`/product/${i.id}`} >
        Read More
       </Link>
     </div>

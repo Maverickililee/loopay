@@ -136,10 +136,10 @@
     @apply flex tablet:flex-col tablet:gap-4 items-start tablet:items-center justify-between;
 }
 .product-page-img-holder{
-    @apply w-[45%] tablet:w-[80%] mobile:w-full  border rounded-xl overflow-hidden  ;
+    @apply w-[45%] tablet:w-[80%] mobile:w-full h-[350px]  border rounded-xl overflow-hidden  ;
 }
 .product-page-img{
-    @apply w-full ;
+    @apply h-full ;
 }
 .product-page-main{
     @apply w-[45%] flex flex-col tablet:w-full items-start gap-2;

@@ -135,7 +135,7 @@ export default function Products({title  ,abstract,data }) {
       <button className='product-section-card-cart'>
         <FaCartPlus className='product-section-card-cart-icon'/>
       </button>
-      <Link className='product-section-card-btn' href={`product/${i.title}`} >
+      <Link className='product-section-card-btn' href={`product/${i.english_title}`} >
        Read More
       </Link>
     </div>

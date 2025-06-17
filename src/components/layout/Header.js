@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaCartShopping, FaGlobe, FaList, FaLocationPin } from 'react-icons/fa6'
 import Menu from '../ui/Menu'
 import { BsFillPatchExclamationFill } from "react-icons/bs";
@@ -20,6 +20,37 @@ export default function (props) {
         {label:'Italian' , id:0},
 
     ]
+
+
+const dropdownRef = useRef(null);
+ const cartRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setCart(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setLanguage(false); 
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   return (
 <header className='header '>
        {openMenu && (
@@ -72,44 +103,52 @@ export default function (props) {
     <div className='header-section'>
 <div className="container header-section-container ">
     
+       <Link href="/">
        <Image
  src="/header/logo.png"                     width={2000}
                      height={2000}
                      alt="loading..."
                      className="header-section-logo "
                    />
+       </Link>
                    <div className='header-section-holder'>
                     <nav className="desktop:hidden">
                 <Menu    data={headerMenu}/>
             </nav>
  <Search   />
 
-                                  <span onClick={()=>(setLanguage(!language))} className=' mobile:hidden header-section-button '>
-                        <FaGlobe  className=' header-section-button-icon'/>
-                        {language &&
-                        <div className=' header-section-language-dropdown'>
-                           {languageList.map((i)=>(
-                            <span  className='header-section-language'>
-                                {i.label}
-                            </span>
-                           ))}
-                        </div>
-                        }
-
-                    </span>
-                               <span 
-                              className='header-section-button mobile:hidden '>
+           <span ref={dropdownRef} className="relative mobile:hidden header-section-button">
+      <FaGlobe
+        className="header-section-button-icon"
+        onClick={() => setLanguage(!language)}
+      />
+      {language && (
+        <div className="header-section-language-dropdown">
+          {languageList.map((i) => (
+            <span key={i.code} className="header-section-language">
+              {i.label}
+            </span>
+          ))}
+        </div>
+      )}
+    </span>
+                               <span  
+                              className='  header-section-button mobile:hidden '>
                         <FaLocationPin className='header-section-button-icon'/>
                     </span>
-                    <span  onClick={()=>setCart(!cart)}  className='header-section-button mobile:hidden '>
-                        <FaCartShopping className='header-section-button-icon'/>
-                                {cart &&
-                        <div className='header-section-cart'>
-<BsFillPatchExclamationFill size={40}  />
-                            Your cart is empty!
-                        </div>
-                        }
-                    </span>
+                 <span
+      ref={cartRef}
+      onClick={() => setCart(!cart)}
+      className="relative header-section-button mobile:hidden"
+    >
+      <FaCartShopping className="header-section-button-icon" />
+      {cart && (
+        <div className="header-section-cart">
+          <BsFillPatchExclamationFill size={40} />
+          Your cart is empty!
+        </div>
+      )}
+    </span>
             
                 <span 
                 onClick={()=>setOpenMenu(!openMenu)}
