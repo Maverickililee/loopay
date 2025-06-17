@@ -10,7 +10,7 @@ import Pagination from '@/components/ui/Pagination';
 
 async function getData(page = 0,search="",sort="", category="" ,) {
   try {
-    const response = await axiosServerSide.post(`adv/TourismSiteListClient/`, {
+       const response = await axiosServerSide.post(`adv/TourismSiteListClient/`, {
       category ,
       sort,
       search,
