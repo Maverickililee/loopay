@@ -368,7 +368,7 @@ div {
   @apply text-white  rounded-[10px] overflow-hidden;
 }
 .banner-section-img{
-  @apply w-full;
+  @apply w-full  h-[200px];
 }
 
 

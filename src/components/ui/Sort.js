@@ -29,7 +29,7 @@ function updateQueryParams(newParams) {
     }
   });
 
-  router.push(`/products?${currentParams.toString()}`);
+  router.push(`/products/0?${currentParams.toString()}`);
 }
 
 function handleSort(id) {

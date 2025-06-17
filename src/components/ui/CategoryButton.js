@@ -15,7 +15,7 @@ export default function CategoryButton({title}) {
         }
       });
     
-      router.push(`/products?${currentParams.toString()}`);
+      router.push(`/products/0?${currentParams.toString()}`);
     }
     function handleClick(category){
     updateQueryParams({

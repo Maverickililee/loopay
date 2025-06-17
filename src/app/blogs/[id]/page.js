@@ -82,7 +82,7 @@ Read More     </Link>
              <div className="flex flex-row-reverse !justify-end items-center">
           <Pagination
           count={data?.blogPaginationData?.totalCount}
-          url={"Blogs"}
+          url={"blogs"}
         />
           </div>
     </div>

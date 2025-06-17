@@ -24,7 +24,7 @@ export const metadata = {
 async function getData() {
   const res = await axiosServerSide.post(
     "Main/GetSiteInfo/",
-    { url: "varna" },
+    { url: "" },
   );
 
   return res.data;

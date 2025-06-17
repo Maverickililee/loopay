@@ -31,9 +31,9 @@ export default async function Home() {
     <Category data={index.category || {}}/>
     <Products title={index.adv_site[0].categoryName} data={index.adv_site[0]} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
     <Banners data={index.banners || {}}/>
-        <Products title="Second Category" data={{}} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
+    <Products title={index.adv_site[1].categoryName} data={index.adv_site[0]} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
         <Statistic data={index.statistics || {}}/>
-        <Products title="Third Category" data={{}} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
+    <Products title={index.adv_site[2].categoryName} data={index.adv_site[0]} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
         <Brands data={index.brands || []}/>
         <Blog data={index.blogs || {} } title="‌‌Blogs" abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
 
