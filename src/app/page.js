@@ -29,7 +29,7 @@ export default async function Home() {
     <main>
     <Hero data={index.sliders || {}} />
     <Category data={index.category || {}}/>
-    <Products title="First Category" data={{}} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
+    <Products title={index.adv_site[0].categoryName} data={index.adv_site[0]} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
     <Banners data={index.banners || {}}/>
         <Products title="Second Category" data={{}} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
         <Statistic data={index.statistics || {}}/>

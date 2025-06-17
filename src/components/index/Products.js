@@ -4,49 +4,50 @@ import Image from 'next/image'
 import { FaCartPlus } from 'react-icons/fa6'
 import Link from 'next/link'
 
-export default function Products({title  ,abstract }) {
-      const productList=[
-    {
-      id:0,
-      code: "101",
-      title:"48V rechargeable car wash with bag and foam container",
-      abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
-      price:"12.5",
-      src:"https://statics.basalam.com/public-77/users/L3ZLze/04-25/Oxzsc9uefForJQ68iICuykNUIC4siBlBxiAnHZwvNTe2JCsb1z.jpg_800X800X70.jpg",
-      colors:["#BD2A31","#ED6803","#252326"],
-      sizes:["M" ,"L" ,'X']
-    },
-        {
-          id:1,
-      code: "102",
-      title:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
-      abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
-      price:"104",
-      src:"https://statics.basalam.com/public-88/users/48XaO2/05-31/HqwriThRvpfFNr912z0PBdVO4YrTzmHu4ZmHeg72Yp0Gn8ojen.jpg_256X256X70.jpg",
-      colors:["#C0C1C5","#202022"],
-      sizes:['XL' ,"XX"]
-    },
-        {
-          id:2,
-      code: "103",
-      title:"Finish Quantum 72-count dishwasher tablets, original with improved formula, made in Türkiye",
-      abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
-      price:"10.0",
-      src:"https://statics.basalam.com/public-35/users/60DL7D/09-28/FRTKd9JFEODrCqzWOLTs7CXuAx9Y2qGPoT1iMwGqX4nanugutM.jpg_800X800X70.jpg",
-      colors:["#216DBE","#f80414"],
-      sizes:["M"]
-    },
-        {
-          id:3,
-      code: "104",
-      title:"Kazuki IAC18CHXAAA gas air conditioner, capacity 18,000",
-      abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
-      price:"550.20$",
-      src:"https://statics.basalam.com/public-13/users/PqxwKw/10-03/UyEwsFPxE8MSYs1HKmzFLi4EL5TytJYXK72FZvBJwUjATDVnkl.jpg_800X800X70.jpg",
-      colors:["#F5F5F5"],
-      sizes:['XXX']
-    },
-  ];
+export default function Products({title  ,abstract,data }) {
+      const productList=data.adv;
+  //     [
+  //   {
+  //     id:0,
+  //     code: "101",
+  //     title:"48V rechargeable car wash with bag and foam container",
+  //     abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
+  //     price:"12.5",
+  //     src:"https://statics.basalam.com/public-77/users/L3ZLze/04-25/Oxzsc9uefForJQ68iICuykNUIC4siBlBxiAnHZwvNTe2JCsb1z.jpg_800X800X70.jpg",
+  //     colors:["#BD2A31","#ED6803","#252326"],
+  //     sizes:["M" ,"L" ,'X']
+  //   },
+  //       {
+  //         id:1,
+  //     code: "102",
+  //     title:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
+  //     abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
+  //     price:"104",
+  //     src:"https://statics.basalam.com/public-88/users/48XaO2/05-31/HqwriThRvpfFNr912z0PBdVO4YrTzmHu4ZmHeg72Yp0Gn8ojen.jpg_256X256X70.jpg",
+  //     colors:["#C0C1C5","#202022"],
+  //     sizes:['XL' ,"XX"]
+  //   },
+  //       {
+  //         id:2,
+  //     code: "103",
+  //     title:"Finish Quantum 72-count dishwasher tablets, original with improved formula, made in Türkiye",
+  //     abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
+  //     price:"10.0",
+  //     src:"https://statics.basalam.com/public-35/users/60DL7D/09-28/FRTKd9JFEODrCqzWOLTs7CXuAx9Y2qGPoT1iMwGqX4nanugutM.jpg_800X800X70.jpg",
+  //     colors:["#216DBE","#f80414"],
+  //     sizes:["M"]
+  //   },
+  //       {
+  //         id:3,
+  //     code: "104",
+  //     title:"Kazuki IAC18CHXAAA gas air conditioner, capacity 18,000",
+  //     abstract:"Lorem Ipsum is a fabricated text with an unintelligible simplicity produced by the printing industry and used by graphic designers.",
+  //     price:"550.20$",
+  //     src:"https://statics.basalam.com/public-13/users/PqxwKw/10-03/UyEwsFPxE8MSYs1HKmzFLi4EL5TytJYXK72FZvBJwUjATDVnkl.jpg_800X800X70.jpg",
+  //     colors:["#F5F5F5"],
+  //     sizes:['XXX']
+  //   },
+  // ];
   return (
     <section className='product-section '>
             <div className="container  product-section-container ">
@@ -88,7 +89,7 @@ export default function Products({title  ,abstract }) {
     width={2000}
     height={2000}
     alt='loading...'
-                      src={i.src}
+                      src={`${process.env.NEXT_PUBLIC_PHOTO_URL}${i.photo}`}
     />
     </div>
 
