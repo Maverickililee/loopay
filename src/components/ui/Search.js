@@ -1,64 +1,56 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+
+import { useState, useRef } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
 
 export default function Search() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const [search, setSearch] = useState('');
-  
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const q = params.get('search') || '';
-    setSearch(q);
-  }, []);
+  const [search, setSearch] = useState(searchParams.get('search') || '');
+  const inputRef = useRef(null);
 
   const showClear = search.length > 0;
 
-  function updateQueryParams(newParams) {
-    const currentParams = new URLSearchParams(window.location.search);
-
-    Object.entries(newParams).forEach(([key, value]) => {
-      if (value !== null && value !== '') {
-        currentParams.set(key, value);
-      } else {
-        currentParams.delete(key);
-      }
-    });
-
-    router.push(`/products/0/${currentParams.toString()}`);
-  }
-
-  function handleSearch() {
-    updateQueryParams({ search });
-  }
-
   function handleClear() {
-    updateQueryParams({ search: null });
     setSearch('');
+    inputRef.current?.focus();
+    router.push('/products/0/'); // reset to base URL without search param
   }
 
-  // Handle Enter key press in input
-  function handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const query = search.trim();
+    const url = query
+      ? `/products/0/?search=${encodeURIComponent(query)}`
+      : `/products/0`;
+
+    router.push(url); // This triggers a server re-render
   }
 
   return (
-    <div className="header-section-search">
+    <form onSubmit={handleSubmit} className="header-section-search">
       <input
+        ref={inputRef}
         type="text"
-        onChange={(e) => setSearch(e.target.value.toLowerCase())}
+        name="search"
         value={search}
-        onKeyDown={handleKeyDown}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search for products..."
         className="header-section-search-input"
-        placeholder="Search For Products..."
+        id="searchInput"
       />
-      <FaSearch onClick={handleSearch} className="header-section-search-icon" />
-      {showClear && <FaX onClick={handleClear} className="header-section-search-icon" />}
-    </div>
+      <button type="submit">
+        <FaSearch className="header-section-search-icon" />
+      </button>
+      {showClear && (
+        <FaX
+          onClick={handleClear}
+          className="header-section-search-icon cursor-pointer"
+        />
+      )}
+    </form>
   );
 }

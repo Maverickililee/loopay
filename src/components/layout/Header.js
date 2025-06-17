@@ -7,13 +7,15 @@ import { BsFillPatchExclamationFill } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import Search from '../ui/Search';
 import Link from 'next/link';
+import { FaSearch } from 'react-icons/fa';
 
-export default function (props) {
+export default  function ({HeaderMenu , searchParams}) {
     const [language, setLanguage] = useState(false);
         const [cart, setCart] = useState(false);
     const [openMenu , setOpenMenu] =useState(false);
+const search =  searchParams?.search;
 
-  const headerMenu = props.HeaderMenu;
+  const headerMenu = HeaderMenu;
   
     const languageList=[
         {label:'English' , id:0},
@@ -115,8 +117,8 @@ const dropdownRef = useRef(null);
                     <nav className="desktop:hidden">
                 <Menu    data={headerMenu}/>
             </nav>
- <Search   />
 
+<Search/>
            <span ref={dropdownRef} className="relative mobile:hidden header-section-button">
       <FaGlobe
         className="header-section-button-icon"

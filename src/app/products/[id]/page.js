@@ -15,7 +15,7 @@ async function getData(page = 0,search,fieldfilter=[] ,  category) {
       page: +page,
       pageSize: 30,
       is_deleted: false,
-      search,
+      search:search,
       filters: [],
       category:category,
       fieldfilter,

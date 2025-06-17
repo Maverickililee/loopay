@@ -19,22 +19,25 @@ async function getData(page = 0,search,fieldfilter=[] ,  category) {
       filters: [],
       category:category,
       fieldfilter,
-    });
+    }
+  );
 
     return response.data;
+  
   } catch (error) {
     console.log("Error fetching data:", error);
     return null;
   }
 }
 
-
 export default async function AdvPage({params ,searchParams }) {
   const { id  } = await params;
 const search = await searchParams?.search;
   const searches = search ? [{ column: "title", value: search }] : [];
 
-const data = await getData(id, searches, []); 
+const data = await getData(id, searches, [],);
+
+
    
 
 
