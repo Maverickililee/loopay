@@ -24,7 +24,7 @@ export default function Brands({data}) {
                       spaceBetween:50,
                     }
                   }} navigation={false} pagination={false} scrollbar={true} loop={true} time={2000}          >
-                    {brands.map((i)=>(
+                    {brands?.map((i)=>(
                         <div key={i.id} className=" brands-section-card">
      <Image 
      className="brands-section-card-img"

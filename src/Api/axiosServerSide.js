@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosServerSide = axios.create({
-  baseURL: "https://apiv2.sh-varna.ir/", 
+  baseURL: "https://apiv2.halazoon.ir/", 
   headers: {
     "Cache-Control": "no-cache, no-store, must-revalidate",
     "Content-Type": "application/json",

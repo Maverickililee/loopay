@@ -34,7 +34,7 @@ export default async function Home() {
         <Products title="Second Category" data={{}} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
         <Statistic data={index.statistics || {}}/>
         <Products title="Third Category" data={{}} abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
-        <Brands data={index.brands || {}}/>
+        <Brands data={index.brands || []}/>
         <Blog data={index.blogs || {} } title="‌‌Blogs" abstract="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sunt est eaque rerum ea perspiciatis quibusdam consequuntur!"/>
 
      </main>

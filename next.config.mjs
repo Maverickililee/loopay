@@ -8,6 +8,7 @@ const nextConfig = {
       "apiv2.sh-varna.ir",
       "demo.themexbd.com",
       "glassapi.sh-varna.ir",
+    "apiv2.halazoon.ir",
           "varnabaan.sh-varna.ir",],
   },
 };

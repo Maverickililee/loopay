@@ -4,7 +4,7 @@ import { showLoading, hideLoading } from "@/store/slices/loadingSlice";
 import store from "@/store/store";
 
 const axiosInstance = axios.create({
-  baseURL: "https://apiv2.sh-varna.ir/",
+  baseURL: "https://apiv2.halazoon.ir/",
 });
 
 axiosInstance.interceptors.request.use(
