@@ -1,0 +1,152 @@
+.blogs-list{
+    @apply py-12 w-full;
+}
+.blogs-list-container{
+    @apply flex flex-col items-start gap-9;
+}
+.blogs-list-root{
+    @apply text-subText font-semibold;
+}
+.blogs-list-main{
+    @apply flex items-start w-full tablet:flex-col justify-between;
+}
+.blogs-list-content{
+    @apply w-[68%] tablet:w-full flex flex-col items-start gap-5;
+}
+.blogs-list-card-holder{
+    @apply grid-cols-3 desktop:grid-cols-2 mobile:!grid-cols-1 grid gap-5 w-full items-start;
+}
+.blogs-list-card{
+  @apply border flex flex-col items-start gap-2  p-5 bg-white rounded-3xl;
+}
+
+.blogs-list-card-img{
+  @apply w-full h-[200px] border rounded-xl mb-2;
+}
+.blogs-list-card-title{
+  @apply line-clamp-2 text-textColor h-[55px] font-semibold text-lg  w-full ;
+}
+
+.blogs-list-card-description{
+  @apply line-clamp-3 h-[70px] text-left text-sm font-semibold text-textColor leading-relaxed ;
+}
+.blogs-list-card-author{
+  @apply text-textColor font-semibold mb-3 text-sm flex items-center gap-2;
+}
+.blogs-list-card-author-icon{
+  @apply text-mainBlue size-5;
+}
+.blogs-list-card-btn{
+  @apply  bg-mainBlue hover:scale-105 hover:shadow-md hover:shadow-gray-300 duration-200 px-4 py-3 w-full text-center rounded-full text-white font-semibold;
+}
+
+
+/* single blog page*/
+
+.blog-page{
+    @apply w-full py-12;
+}
+.blog-page-container{
+    @apply flex  justify-center ;
+
+}
+.blog-page-holder{
+    @apply flex flex-col  tablet:w-full border w-[80%] overflow-hidden rounded-xl;
+              box-shadow: 1px 1px 15px 5px #e0e0e05a;
+
+}
+.blog-page-img{
+    @apply w-full border-b tablet:h-auto h-[550px];
+}
+.blog-page-main{
+    @apply w-full flex flex-col gap-4 px-6 py-4;
+}
+.blog-page-author{
+    @apply text-subText;
+}
+.blog-page-title{
+    @apply text-mainBlue font-semibold text-2xl;
+}
+.blog-page-content
+  h1 {
+  @apply text-mainBlue text-[27px] font-semibold;
+}
+
+  .blog-page-content
+  h2 {
+  @apply text-textColor text-[25px] font-semibold;
+}
+
+  .blog-page-content
+  h3 {
+  @apply text-textColor text-[23px] font-semibold;
+}
+
+  .blog-page-content
+  h4 {
+  @apply text-textColor text-[19px] font-semibold;
+}
+
+  .blog-page-content
+  h5 {
+  @apply text-textColor text-[17px] font-semibold;
+}
+
+  .blog-page-content
+  h6 {
+  @apply text-textColor text-[15px] font-semibold;
+}
+ .blog-page-content p {
+  @apply text-textColor text-[15px] leading-loose text-justify;
+}
+ .blog-page-content a {
+  @apply text-mainBlue underline cursor-pointer  font-semibold;
+}
+ .blog-page-content ul,
+
+  .blog-page-content
+  ol {
+  @apply flex flex-col list-disc	 gap-3 items-start w-full;
+}
+
+  .blog-page-content
+  ul
+  li,
+
+  .blog-page-content
+  ol
+  li {
+  @apply text-textColor text-[16px] font-semibold;
+}
+
+  .blog-page-content
+  img {
+  @apply w-full  h-[450px] rounded-md;
+}
+
+  .blog-page-content
+  figure {
+  @apply my-4 w-full;
+}
+
+  .blog-page-content
+  strong {
+  @apply font-bold text-[16px];
+}
+
+  .blog-page-content
+  figcaption {
+  @apply flex justify-center items-center mt-3;
+}
+
+
+
+/* category sidebar (ui)*/
+.category-sidebar{
+    @apply w-[30%] flex items-start tablet:w-full tablet:mb-4  flex-col text-textColor text-lg font-semibold border rounded-xl px-4 py-6 ;
+          box-shadow: 1px 1px 15px 5px #e0e0e05a;
+
+}
+.category-sidebar-links{
+    @apply border-t text-left px-3  w-full hover:text-mainBlue duration-200 py-4;
+}

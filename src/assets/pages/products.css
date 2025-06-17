@@ -1,0 +1,225 @@
+.products-list{
+    @apply py-12 w-full;
+}
+.products-list-container{
+    @apply flex flex-col items-start gap-9;
+}
+.products-list-root{
+    @apply text-subText font-semibold;
+}
+.products-list-main{
+    @apply flex items-start w-full tablet:flex-col justify-between;
+}
+.products-list-content{
+    @apply w-[68%] tablet:w-full flex flex-col items-start gap-5;
+}
+.products-list-card-holder{
+    @apply grid-cols-3 desktop:grid-cols-2 mobile:!grid-cols-1 grid gap-5 w-full items-start;
+}
+.products-list-card{
+  @apply flex flex-col items-start gap-2  p-5 bg-white rounded-[36px] h-[650px] border;
+}
+.products-list-card-img-holder{
+  @apply w-full h-[250px] flex items-center justify-center;
+}
+.products-list-card-img{
+  @apply  h-full rounded-xl ;
+}
+.products-list-card-code{
+  @apply text-subText text-sm font-medium;
+}
+.products-list-card-info{
+  @apply flex items-center justify-between text-lg font-semibold text-textColor gap-1 w-full;
+}
+.products-list-card-title{
+  @apply w-[65%] line-clamp-2 h-[55px] text-textColor font-semibold;
+}
+.products-list-card-price{
+  @apply w-[35%] flex flex-col text-textColor items-end;
+}
+.products-list-card-label{
+  @apply text-sm text-subText font-semibold;
+}
+.products-list-card-description{
+  @apply text-textColor line-clamp-2 h-[48px] text-justify text-sm font-semibold leading-relaxed;
+}
+.products-list-card-colors-holder{
+  @apply flex items-center gap-2;
+}
+.products-list-card-colors{
+  @apply size-5 border flex rounded-lg;
+}
+.products-list-card-size-holder{
+  @apply flex items-center gap-3;
+}
+.products-list-card-size{
+  @apply text-lg flex border-b-2 w-5 justify-center  font-medium ;
+}
+.products-list-card-btn-holder{
+  @apply  flex items-center gap-3 justify-between w-full;
+}
+.products-list-card-cart{
+  @apply bg-mainBlue hover:scale-105 hover:shadow-md hover:shadow-gray-300 duration-200 p-4 rounded-full;
+}
+.products-list-card-cart-icon{
+  @apply size-5  text-white;
+}
+.products-list-card-btn{
+  @apply  bg-mainBlue hover:scale-105 hover:shadow-md hover:shadow-gray-300 duration-200 px-4 py-3 w-full text-center rounded-full text-white font-semibold;
+}
+/* filters sidebar (component}*/
+
+.filters-section{
+  @apply  sticky right-0  tablet:w-full  flex flex-col items-start gap-5 w-[30%] ;
+}
+.filter-section-card{
+  @apply cursor-pointer rounded-xl border p-5 flex flex-col items-start gap-4  w-full;
+  box-shadow: 1px 1px 15px 5px #e0e0e05a;
+}
+.filter-section-card-toggle{
+  @apply flex items-center justify-between text-lg font-semibold text-textColor  w-full;
+}
+.filter-section-active-price{
+  @apply flex items-start  flex-col gap-5  w-full;
+}
+.filter-section-active-price-input{
+  @apply text-textColor appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none placeholder:font-medium font-semibold placeholder:text-subText  focus-visible:border-mainBlue focus-visible:outline-none duration-200 w-full py-3 px-3 rounded-lg border;
+}
+.filter-section-active-btn-holder{
+  @apply flex items-center gap-2;
+}
+.filter-section-active-btn{
+  @apply text-white  w-[100px] bg-mainBlue rounded-lg hover:shadow-md hover:scale-105 hover:shadow-slate-200 duration-200 px-6 py-2;
+}
+.filter-section-active-rating{
+  @apply flex items-start  flex-col gap-5  w-full;
+}
+.filter-section-active-rating-holder{
+  @apply flex items-center justify-between gap-2  w-full;
+}
+.filter-section-active-rating-label{
+  @apply text-subText font-semibold;
+}
+.filter-section-active-rating-input{
+  @apply text-textColor appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none px-3 w-[30%] text-center  focus-visible:border-mainBlue focus-visible:outline-none duration-200 py-3   rounded-md border;
+}
+.filter-section-active-city {
+  @apply flex items-center justify-between gap-2  w-full ;
+}
+.filter-section-active-city-select{
+  @apply w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300  focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow cursor-pointer appearance-none;
+}
+.filter-section-active-city-option{
+  @apply text-subText font-semibold;
+}
+
+/* sort (component}*/
+.sort-section{
+  @apply flex items-center w-full tablet:flex-wrap gap-4 tablet:gap-0 tablet:justify-between tablet:gap-y-4  border-b pb-3 ;
+}
+.sort-section-icon{
+  @apply text-subText size-6 tablet:hidden;
+}
+.sort-section-label{
+  @apply text-textColor font-semibold tablet:hidden;
+}
+.sort-section-tabs{
+  @apply font-semibold desktop:text-sm  w-[180px] tablet:w-[24%] mobile:w-[48%] text-center rounded-lg py-3 px-1 cursor-pointer;
+}
+
+
+/* product single page */
+.product-page{
+    @apply w-full py-12;
+}
+.product-page-container{
+    @apply flex tablet:flex-col tablet:gap-4 items-start tablet:items-center justify-between;
+}
+.product-page-img-holder{
+    @apply w-[45%] tablet:w-[80%] mobile:w-full  border rounded-xl overflow-hidden  ;
+}
+.product-page-img{
+    @apply w-full ;
+}
+.product-page-main{
+    @apply w-[45%] flex flex-col tablet:w-full items-start gap-2;
+}
+.product-page-title{
+    @apply text-3xl text-textColor font-semibold;
+}
+.product-page-date{
+    @apply text-subText font-medium ;
+}
+.product-page-rating{
+    @apply flex items-center text-subText font-medium gap-1;
+}
+.product-page-rating-icon{
+    @apply text-mainBlue size-5 ;
+}
+.product-page-info-holder{
+    @apply bg-slate-50 px-2 text-textColor text-lg py-3 font-semibold flex w-full mt-2 justify-between border rounded-lg;
+}
+.product-page-category{
+    @apply text-mainBlue underline;
+}
+.product-page-sizes-holder{
+    @apply  text-textColor text-lg py-3 font-semibold flex w-full  flex-col gap-2 border-b;
+}
+.product-page-size-list{
+    @apply flex items-center gap-2;
+}
+.product-page-size{
+    @apply w-8 flex justify-center border-b py-0.5; 
+}
+.product-page-colors-holder{
+    @apply text-textColor text-lg py-3 font-semibold flex w-full  flex-col gap-2 border-b;
+}
+.product-page-colors-list{
+    @apply flex items-center gap-2;
+}
+.product-page-color{
+    @apply w-4 h-4 border rounded-md;
+}
+.product-page-cart{
+    @apply  flex items-center w-full gap-4 mt-4  ;
+}
+.product-page-cart-input {
+    @apply bg-slate-50 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-center w-[20%] py-3 px-2 rounded-full border focus-visible:outline-none focus-visible:border-mainBlue;
+}
+.product-page-cart-btn{
+    @apply  bg-mainBlue w-full text-white rounded-full hover:scale-105 duration-300 hover:shadow-md hover:shadow-slate-300 py-3.5 px-3 font-semibold;
+}
+.product-page-description-holder{
+    @apply text-textColor text-lg py-3 font-semibold flex w-full  flex-col gap-2 ;
+}
+
+.product-page-content{
+  @apply text-textColor border py-4 rounded-xl bg-slate-50 leading-relaxed font-medium px-3 ;
+}
+.product-page-content h1{
+  @apply font-semibold mb-3 text-[22px];
+}
+.product-page-content h2{
+  @apply font-semibold mb-3 text-[21px];
+}
+.product-page-content h3{
+  @apply font-semibold mb-3 text-[20px];
+}
+.product-page-content h4{
+  @apply font-semibold mb-3 text-[19px];
+}
+.product-page-content h5{
+  @apply font-semibold mb-3 text-[18px];
+}
+.product-page-content h6{
+  @apply font-semibold mb-3 text-[17px];
+}
+.product-page-content p{
+    @apply font-medium text-base;
+}
+.product-page-content ul{
+  @apply flex flex-col items-start gap-2;
+}
+.product-page-content strong {
+    @apply font-semibold;
+}

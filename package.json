@@ -1,0 +1,33 @@
+{
+  "name": "looppay",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.9.0",
+    "country-flag-icons": "^1.5.19",
+    "dayjs": "^1.11.13",
+    "jalaali-js": "^1.2.8",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-paginate": "^8.3.0",
+    "react-redux": "^9.2.0",
+    "swiper": "^9.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "daisyui": "^5.0.43",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^3.4.1"
+  }
+}
