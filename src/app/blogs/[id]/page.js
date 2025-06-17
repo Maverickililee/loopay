@@ -77,13 +77,14 @@ Read More     </Link>
                 No Article Is Availabe!!
                 </div>
             )}
+    
+    </div>
              <div className="flex flex-row-reverse !justify-end items-center">
           <Pagination
           count={data?.blogPaginationData?.totalCount}
           url={"Blogs"}
         />
           </div>
-    </div>
     </div>
     </section>
     </div>
