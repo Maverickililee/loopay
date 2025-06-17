@@ -8,32 +8,39 @@ import { FaCartPlus } from 'react-icons/fa6';
 import axiosServerSide from '@/Api/axiosServerSide';
 import Pagination from '@/components/ui/Pagination';
 
-async function getData(page = 0,search="",sort="", category="" ,) {
+async function getData(
+  page = 0,
+  search = "",
+  sort = "id",
+  filters = [],
+  fieldfilter = [],
+  category = ""
+) {
   try {
-    const response = await axiosServerSide.post(`/Content/BlogList/`, {
-      category:category ,
+    const response = await axiosServerSide.post(`adv/TourismSiteListClient/`, {
+      category: category,
       sort,
       search,
       page: +page,
       pageCount: 30,
+      is_deleted: false,
       order: "new",
+      filters,      
+      fieldfilter,  
     });
-
     return response.data;
   } catch (error) {
-    console.log("Error fetching data:", error);
-    return null;
+    console.error("Error:", error?.response?.data || error.message);
+    throw error;
   }
 }
 
 export default async function AdvPage({params ,searchParams }) {
-  const { id ,title   } = await params;
-    const search = searchParams.search || "";
-  const sort = searchParams.sort || "";
-
-  const data = await getData(id ,title ,sort,search ,title );
-  console.log(data);
-
+  const { id  } = await params;
+   const sort = searchParams.sort || "";
+  const search = await searchParams?.search;
+  const searches = search ? [{ column: "title", value: search }] : [];
+  const data = await getData(id  ,searches,sort   );
 
 
   const lowest=parseFloat(searchParams.lowest || "0");

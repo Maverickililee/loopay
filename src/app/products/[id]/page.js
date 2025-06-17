@@ -8,15 +8,17 @@ import { FaCartPlus } from 'react-icons/fa6';
 import axiosServerSide from '@/Api/axiosServerSide';
 import Pagination from '@/components/ui/Pagination';
 
-async function getData(page = 0,search="",sort="", category="" ,) {
+async function getData(page = 0,search="",fieldfilter=[] ,  category) {
   try {
        const response = await axiosServerSide.post(`adv/TourismSiteListClient/`, {
-      category ,
-      sort,
-      search,
+      sort: "id",
       page: +page,
-      pageCount: 30,
-      order: "new",
+      pageSize: 30,
+      is_deleted: false,
+      search,
+      filters: [],
+      category,
+      fieldfilter,
     });
 
     return response.data;
@@ -28,12 +30,9 @@ async function getData(page = 0,search="",sort="", category="" ,) {
 
 export default async function AdvPage({params ,searchParams }) {
   const { id  } = await params;
-   const sort = searchParams.sort || "";
-  const search = searchParams.search || "";
-  const lowest=parseFloat(searchParams.lowest || "0");
-  const highest = parseFloat(searchParams.highest || "1000000");
-const category = searchParams.category ||"";
-  const data = await getData(id  ,search,sort   );
+  const search = await searchParams?.search;
+  const searches = search ? [{ column: "title", value: search }] : [];
+  const data = await getData(id  ,searches  );
    
 
   console.log(data);
@@ -56,8 +55,8 @@ const category = searchParams.category ||"";
    <div className='products-list-content' >
     <Sort/>
     <div className='products-list-card-holder'>
- {data?.blogPaginationData?.blogs.length > 0 ? (
-              data?.blogPaginationData?.blogs?.map((i) => (
+ {data?.data?.length > 0 ? (
+              data?.data?.map((i) => (
   <div key={i.id} className='products-list-card '>
     <div className='products-list-card-img-holder'>
     <Image
@@ -84,7 +83,7 @@ const category = searchParams.category ||"";
       Details:
     </span>
     <p className='products-list-card-description ' >
-      {i?.abstract }
+      {i?.content_value }
    </p>
    <span className='products-list-card-label'>
       Available Colors:
@@ -112,7 +111,7 @@ const category = searchParams.category ||"";
       <button className='products-list-card-cart'>
         <FaCartPlus className='products-list-card-cart-icon'/>
       </button>
-      <Link className='products-list-card-btn' href={`product/${i.title}`} >
+      <Link className='products-list-card-btn' href={`/product/${i.english_title}`} >
        Read More
       </Link>
     </div>
@@ -127,7 +126,7 @@ const category = searchParams.category ||"";
     </div>
           <div className="flex flex-row-reverse !justify-end items-center">
                   <Pagination
-                  count={data?.blogPaginationData?.totalCount}
+                  count={data?.count}
                   url={"products"}
                 />
                   </div>

@@ -4,7 +4,6 @@ import "../../assets/pages/products.css"
 import { useState } from "react";
 import { FaAngleDown, FaFilter } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
-import { useRouter } from "next/navigation";
 
 export default function Filter({className}) {
   const cityList = [{ label: "city1" }, { label: "city2" }];
@@ -18,70 +17,15 @@ export default function Filter({className}) {
     const [openMenu , setOpenMenu] =useState(false);
 
   const [filterPrice, setFilterPrice] = useState({ lowest: "",highest: "",});
-  const { lowest, highest } = filterPrice;
 
   
   const [filterRating, setFilterRating] = useState({ lowestRating: null,highestRating: null,});
-  const { lowestRating, highestRating } = filterRating;
 
 
   const toggleFilter = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-const router =useRouter();
 
-function updateQueryParams(newParams) {
-  const currentParams = new URLSearchParams(window.location.search);
-
-  Object.entries(newParams).forEach(([key, value]) => {
-    if (value !== null && value !== '') {
-      currentParams.set(key, value);
-    } else {
-      currentParams.delete(key);
-    }
-  });
-
-  router.push(`/products?${currentParams.toString()}`);
-}
-
-
-  function handleFilterPrice() {
-     setOpenMenu(false);
-
-     updateQueryParams({
-      lowest,
-      highest,
-    });
-
-  }
-function handleClearPrice() {
-  setFilterPrice({ lowest: '', highest: '' });
- setOpenMenu(false);
-
-  updateQueryParams({
-    lowest: null,
-    highest: null,
-  });
-
-}
-
-  function handleFilterRatings(){
-     setOpenMenu(false);
-
-    updateQueryParams({
-      lowestRating,
-      highestRating,
-    });
-  }
-function handleClearRatings() {
-  setFilterRating({ lowestRating: '', highestRating: '' });
- setOpenMenu(false);
-  updateQueryParams({
-    lowestRating: null,
-    highestRating: null,
-  });
-
-}
 
   return (
     <section className={`filters-section ${className} ${openMenu && "!z-[999999]"}`}>
@@ -149,13 +93,11 @@ function handleClearRatings() {
             />
             <div className="filter-section-active-btn-holder mobile:flex-col">
               <button
-                onClick={handleFilterPrice}
                 className="filter-section-active-btn"
               >
                 Apply
               </button>
                 <button
-                  onClick={handleClearPrice}
                 className="filter-section-active-btn"
                 >
                   Clear
@@ -210,14 +152,12 @@ value={filterRating.highestRating}
             <div className="filter-section-active-btn-holder mobile:flex-col">
               <button
                 className="filter-section-active-btn"
-      onClick={handleFilterRatings}
               >
                 Apply
               </button>
 
                   <button
                 className="filter-section-active-btn"
-      onClick={handleClearRatings}
               >
                 Clear
               </button>
