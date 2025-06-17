@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Category from "@/components/ui/Category";
 import axiosServerSide from "@/Api/axiosServerSide";
+import Pagination from "@/components/ui/Pagination";
 
 async function getData(page = 0, category =category) {
   try {
