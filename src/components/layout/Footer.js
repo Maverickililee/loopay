@@ -6,6 +6,8 @@ import { SiVisa, SiPaypal, SiApple, SiGoogleplay } from 'react-icons/si';
 
 export default function Footer(props) {
   const FooterMenu1 =props.FooterMenu1;
+    const FooterMenu2 =props.FooterMenu2;
+
 
   return (
     <footer className="footer">
@@ -51,7 +53,7 @@ export default function Footer(props) {
         <div>
           <h3 className="footer-menu">Menu Two</h3>
           <ul className="footer-menu-list">
-             {FooterMenu1?.map((i,index)=>(
+             {FooterMenu2?.map((i,index)=>(
             <Link href={i.url} key={index}>
                 {i.title}
             </Link>

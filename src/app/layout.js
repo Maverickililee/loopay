@@ -48,6 +48,8 @@ export default async function RootLayout({ children }) {
           footerText={data.footerText}
           appInfo={data.appInfo}
           FooterMenu1={data.FooterMenu1}
+                    FooterMenu2={data.FooterMenu2}
+
           contactDetail={data.contactDetail}
         />
       </body>
