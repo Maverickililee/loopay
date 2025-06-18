@@ -34,7 +34,7 @@ export default function Sort() {
             </Link>
         ))
       }
-      <Filter className="!hidden tablet:!flex"/>
+      {/* <Filter className="!hidden tablet:!flex"/> */}
     </div>
   )
 }

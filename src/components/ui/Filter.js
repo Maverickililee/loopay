@@ -1,391 +1,210 @@
 "use client";
 
-import "../../assets/pages/products.css"
-import { useState } from "react";
-import { FaAngleDown, FaFilter } from "react-icons/fa6";
-import { IoMdClose } from "react-icons/io";
+import Link from "next/link";
+import React, { useState } from "react";
+import { FaChevronDown, FaChevronUp, FaSearchLocation } from "react-icons/fa";
+import { IoFilterSharp } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import Input from "../Global/Input/Input";
+import { hideLoading, showLoading } from "@/store/slices/loadingSlice";
+import { showAlert } from "@/store/slices/alertSlice";
 
-export default function Filter({className}) {
-  const cityList = [{ label: "city1" }, { label: "city2" }];
-  const provinceList = [
-    { label: "province1" },
-    { label: "province2" },
-    { label: "province3" },
-  ];
-
-  const [openIndex, setOpenIndex] = useState(null);
-    const [openMenu , setOpenMenu] =useState(false);
-
-  const [filterPrice, setFilterPrice] = useState({ lowest: "",highest: "",});
-
-  
-  const [filterRating, setFilterRating] = useState({ lowestRating: null,highestRating: null,});
-
-
-  const toggleFilter = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
+const TreeNode = ({ node, type, level = 0, index = 1 }) => {
+  const [expanded, setExpanded] = useState(false);
+  const isLeaf = !node.children || node.children.length === 0;
 
   return (
-    <section className={`filters-section ${className} ${openMenu && "!z-[999999]"}`}>
-       {openMenu && (
-              <div className="fixed   w-full h-full top-0 right-0 bg-black  bg-opacity-50 z-[9999999] flex items-center justify-end">
-                <div
-                  className="absolute inset-0  "
-                  onClick={() => setOpenMenu(false)}
-                ></div>
-                <div
-                  className={`bg-white w-3/4 max-w-xs h-full relative shadow-lg z-[999999]  `}
-                >
-                  <div className="p-5 flex justify-end">
-                    <span
-                      onClick={() => setOpenMenu(false)}
-                      className="text-[25px] bg-mainBlue text-white p-1 rounded-lg  text-text__light cursor-pointer"
-                    >
-                      <IoMdClose className="hover:rotate-180 duration-500 " />
-                    </span>
-                  </div>
-                  <nav className="px-5 flex flex-col w-full">
-                    <span className="flex flex-col gap-2 mb-5 justify-center items-center w-full">
-                  
-                
-                     
-                    </span>
-              
-                    <ul className="space-y-4 flex justify-center items-center  flex-col">
-             <div
-        className="filter-section-card  "
-      >
-        <div
-          className="filter-section-card-toggle  "
-          key={1}
-          onClick={() => toggleFilter(1)}
-        >
-          Price:
-          <i
-            className={` ${
-              openIndex === 1 ? "rotate-180 duration-200 " : ""
-            }`}
-          >
-            <FaAngleDown />
-          </i>
-        </div>
-        {openIndex === 1 && (
-          <div className="filter-section-active-price  ">
-            <input
-              type="number"
-              onChange={(e) =>
-                setFilterPrice({ ...filterPrice, lowest: e.target.value })
-              }
-              value={filterPrice.lowest}
-              className="filter-section-active-price-input"
-              placeholder="Lowest Price:"
-            />
-            <input
-              type="number"
-              onChange={(e) =>
-                setFilterPrice({ ...filterPrice, highest: e.target.value })
-              }
-              value={filterPrice.highest}
-              className="filter-section-active-price-input"
-              placeholder="Highest Price:"
-            />
-            <div className="filter-section-active-btn-holder mobile:flex-col">
-              <button
-                className="filter-section-active-btn"
-              >
-                Apply
-              </button>
-                <button
-                className="filter-section-active-btn"
-                >
-                  Clear
-                </button>
-            </div>
-          </div>
-        )}
-      </div>
+    <div className="w-full mt-1">
       <div
-          className="filter-section-card  "
-
+        className={`relative Blogs__bott__aside__card__top__link ${
+          !isLeaf ? "cursor-pointer" : ""
+        } ${level > 0 ? "tree-branch" : ""}`}
+        style={{ paddingRight: `${level * 2 + 16}px` }}
+        onClick={() => !isLeaf && setExpanded(!expanded)}
       >
-        <div
-          className="filter-section-card-toggle  "
-          key={2}
-          onClick={() => toggleFilter(2)}
-        >
-          Ratings
-          <i
-            className={`${
-              openIndex === 2 ? "rotate-180 duration-200 " : ""
-            }`}
-          >
-            <FaAngleDown />
-          </i>
-        </div>
-        {openIndex === 2 && (
-          <div className="filter-section-active-rating  ">
-          <div className="filter-section-active-rating-holder ">
-                          <span className="filter-section-active-rating-label">From</span>
+        <span className="Blogs__bott__aside__card__top__link__index">
+          {level === 0 ? index + 2 : "-"}
+        </span>
 
-            <input
-              type="number"
-              min={0}
-              max={5}
-              onChange={(e)=>setFilterRating({...filterRating , lowestRating:e.target.value})}
-           value={filterRating.lowestRating}
+        {isLeaf ? (
+          <Link href={`/products/0/${node.id}`} className="flex-1 text-sm">
+            {node.title}
+          </Link>
+        ) : (
+          <span className="flex-1 text-sm">{node.title}</span>
+        )}
 
-              className="filter-section-active-rating-input"
-            />
-            <span className="filter-section-active-rating-label">To</span>
-
-            <input
-              type="number"
-              min={1}
-              max={5}
-                            onChange={(e)=>setFilterRating({...filterRating , highestRating:e.target.value})}
-value={filterRating.highestRating}
-              className="filter-section-active-rating-input"
-            />
-</div>
-            <div className="filter-section-active-btn-holder mobile:flex-col">
-              <button
-                className="filter-section-active-btn"
-              >
-                Apply
-              </button>
-
-                  <button
-                className="filter-section-active-btn"
-              >
-                Clear
-              </button>
-            </div>
-          </div>
+        {!isLeaf && (
+          <span className="ml-2">
+            {expanded ? <FaChevronUp /> : <FaChevronDown />}
+          </span>
         )}
       </div>
-      <div
-         className="filter-section-card "
 
-      >
-        <div
-        className="filter-section-card-toggle "
-          key={3}
-          onClick={() => toggleFilter(3)}
-        >
-          Province & City
-          <i
-            className={` ${
-              openIndex === 3 ? "rotate-180 duration-200 " : ""
-            }`}
-          >
-            <FaAngleDown />
-          </i>
+      {expanded && node.children?.length > 0 && (
+        <div className="tree-children mt-1">
+          {node.children.map((child, idx) => (
+            <TreeNode
+              key={child.id}
+              node={child}
+              type={type}
+              level={level + 1}
+              index={idx + 3}
+            />
+          ))}
         </div>
-        {openIndex === 3 && (
-          <div className="filter-section-active-city">
-            <select class="filter-section-active-city-select">
-              <option
-                value=""
-                className="filter-section-active-city-option "
-                hidden
-                selected
+      )}
+    </div>
+  );
+};
+
+export default function AsideTouristPlaces({ data, type, page }) {
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const handleSearch = () => {
+    const searchValue = document.getElementById("search").value;
+    if (searchValue.length !== 0) {
+      dispatch(showLoading());
+      setTimeout(() => {
+        router.push(
+          `/products/0?search=${searchValue}`
+        );
+        dispatch(hideLoading());
+      }, 500);
+    } else {
+      dispatch(
+        showAlert({
+          color: "#ffeaea",
+          message: "مقداری وارد نشده",
+        })
+      );
+    }
+
+    document.getElementById("search").value = "";
+  };
+
+  return (
+    <>
+      {/* {open && (
+        <aside className="Blogs__bott__aside !hidden xx:!block">
+          <div className="Blogs__bott__aside__card">
+            <h3 className="Blogs__bott__aside__title">
+              {type === 4 ? "دسته بندی اقامتگاه ها" : "دسته بندی آگهی ها"}
+            </h3>
+            <div className="Blogs__bott__aside__card__top">
+              <Link
+                href={`/${
+                  type === 1
+                    ? "TouristPlaces"
+                    : type === 2
+                    ? "ExplorePlaces"
+                    : type === 4
+                    ? "Residences"
+                    : "HouseAds"
+                }/0`}
+                className="Blogs__bott__aside__card__top__link"
               >
-                Province:
-              </option>
-              {provinceList.map((i) => (
-                <option value={i.label}>{i.label}</option>
-              ))}
-            </select>
-            <select class="filter-section-active-city-select">
-              <option
-                value=""
-                className="filter-section-active-city-option"
-                hidden
-                selected
-              >
-                City:
-              </option>
-              {cityList.map((i) => (
-                <option value={i.label}>{i.label}</option>
-              ))}
-            </select>
-          </div>
-        )}
-      </div>
-                    </ul>
-                  </nav>
+                <span className="Blogs__bott__aside__card__top__link__index">
+                  1
+                </span>
+                {type === 4 ? "همه اقامتگاه ها" : "همه آگهی ها"}
+              </Link>
+              {data?.length > 0 ? (
+                data
+                  .filter((item) => item.parent === null)
+                  .map((item) => (
+                    <TreeNode key={item.id} node={item} type={type} level={0} />
+                  ))
+              ) : (
+                <div className="w-full p-2 rounded-lg font-medium bg-color_3 text-color_6 text-[12px]">
+                  دسته بندی وجود ندارد
                 </div>
-              </div>
-            )}
-      <div
-        className="filter-section-card tablet:!hidden "
-      >
-        <div
-          className="filter-section-card-toggle  "
-          key={1}
-          onClick={() => toggleFilter(1)}
-        >
-          Price:
-          <i
-            className={` ${
-              openIndex === 1 ? "rotate-180 duration-200 " : ""
-            }`}
-          >
-            <FaAngleDown />
-          </i>
-        </div>
-        {openIndex === 1 && (
-          <div className="filter-section-active-price  ">
-            <input
-              type="number"
-              onChange={(e) =>
-                setFilterPrice({ ...filterPrice, lowest: e.target.value })
-              }
-              value={filterPrice.lowest}
-              className="filter-section-active-price-input"
-              placeholder="Lowest Price:"
-            />
-            <input
-              type="number"
-              onChange={(e) =>
-                setFilterPrice({ ...filterPrice, highest: e.target.value })
-              }
-              value={filterPrice.highest}
-              className="filter-section-active-price-input"
-              placeholder="Highest Price:"
-            />
-            <div className="filter-section-active-btn-holder">
-              <button
-                onClick={handleFilterPrice}
-                className="filter-section-active-btn"
-              >
-                Apply
-              </button>
-                <button
-                  onClick={handleClearPrice}
-                className="filter-section-active-btn"
-                >
-                  Clear
-                </button>
+              )}
             </div>
           </div>
-        )}
-      </div>
-      <div
-          className="filter-section-card tablet:!hidden "
+        </aside>
+      )} */}
 
+      <button
+        onClick={() => setOpen((state) => !state)}
+        className="hidden xx:flex justify-center items-center btn"
       >
-        <div
-          className="filter-section-card-toggle  "
-          key={2}
-          onClick={() => toggleFilter(2)}
-        >
-          Ratings
-          <i
-            className={`${
-              openIndex === 2 ? "rotate-180 duration-200 " : ""
-            }`}
-          >
-            <FaAngleDown />
-          </i>
-        </div>
-        {openIndex === 2 && (
-          <div className="filter-section-active-rating  ">
-          <div className="filter-section-active-rating-holder ">
-                          <span className="filter-section-active-rating-label">From</span>
-
-            <input
-              type="number"
-              min={0}
-              max={5}
-              onChange={(e)=>setFilterRating({...filterRating , lowestRating:e.target.value})}
-           value={filterRating.lowestRating}
-
-              className="filter-section-active-rating-input"
-            />
-            <span className="filter-section-active-rating-label">To</span>
-
-            <input
-              type="number"
-              min={1}
-              max={5}
-                            onChange={(e)=>setFilterRating({...filterRating , highestRating:e.target.value})}
-value={filterRating.highestRating}
-              className="filter-section-active-rating-input"
-            />
-</div>
-            <div className="filter-section-active-btn-holder">
-              <button
-                className="filter-section-active-btn"
-      onClick={handleFilterRatings}
-              >
-                Apply
-              </button>
-
-                  <button
-                className="filter-section-active-btn"
-      onClick={handleClearRatings}
-              >
-                Clear
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-      <div
-         className="filter-section-card tablet:!hidden"
-
-      >
-        <div
-        className="filter-section-card-toggle "
-          key={3}
-          onClick={() => toggleFilter(3)}
-        >
-          Province & City
-          <i
-            className={` ${
-              openIndex === 3 ? "rotate-180 duration-200 " : ""
-            }`}
-          >
-            <FaAngleDown />
-          </i>
-        </div>
-        {openIndex === 3 && (
-          <div className="filter-section-active-city">
-            <select class="filter-section-active-city-select">
-              <option
-                value=""
-                className="filter-section-active-city-option "
-                hidden
-                selected
-              >
-                Province:
-              </option>
-              {provinceList.map((i) => (
-                <option value={i.label}>{i.label}</option>
-              ))}
-            </select>
-            <select class="filter-section-active-city-select">
-              <option
-                value=""
-                className="filter-section-active-city-option"
-                hidden
-                selected
-              >
-                City:
-              </option>
-              {cityList.map((i) => (
-                <option value={i.label}>{i.label}</option>
-              ))}
-            </select>
-          </div>
-        )}
-      </div>
-      <button className="hidden tablet:flex w-full py-2.5 px-2 rounded-md justify-center bg-mainBlue text-white" onClick={()=>setOpenMenu(!openMenu)}>
-        <FaFilter/>
+        فیلتر <IoFilterSharp />
       </button>
-    </section>
+
+      <aside className="Blogs__bott__aside xx:!hidden">
+        <div className="relative w-full">
+          <Input label="جستجو" class="w-full" id="search" />
+          <button
+            className="absolute top-[3px] left-0.5 p-[0.5rem] rounded-lg bg-color_3 text-color_6 duration-200"
+            onClick={handleSearch}
+          >
+            <FaSearchLocation className="text-[18px]" />
+          </button>
+        </div>
+
+        <div className="Blogs__bott__aside__card">
+          <h3 className="Blogs__bott__aside__title">
+            {type === 4 ? "دسته بندی اقامتگاه ها" : "دسته بندی آگهی ها"}
+          </h3>
+          {page !== 2 ? (
+            <div className="Blogs__bott__aside__card__top mt-4">
+              <Link
+                href={`/products/0`}
+                className="Blogs__bott__aside__card__top__link text-sm"
+              >
+                <span className="Blogs__bott__aside__card__top__link__index">
+                  1
+                </span>{" "}
+                {type === 4 ? "همه اقامتگاه ها" : "همه آگهی ها"}
+              </Link>
+              {data?.length > 0 ? (
+                data.map((item, idx) => (
+                  <TreeNode
+                    key={item.id}
+                    node={item}
+                    type={type}
+                    level={0}
+                    index={idx}
+                  />
+                ))
+              ) : (
+                <div className="w-full p-2 rounded-lg font-medium bg-color_3 text-color_6 text-[12px]">
+                  دسته بندی وجود ندارد
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="Blogs__bott__aside__card__top">
+              <button
+                className="btn !text-[14px]"
+                onClick={() => router.back()}
+              >
+                بازگشت <IoMdArrowRoundBack />
+              </button>
+              {data?.length > 0 ? (
+                data.map((item, idx) => (
+                  <TreeNode
+                    key={item.id}
+                    node={item}
+                    type={type}
+                    level={0}
+                    index={idx}
+                  />
+                ))
+              ) : (
+                <div className="w-full p-2 rounded-lg font-medium bg-color_3 text-color_6 text-[12px]">
+                  فیلدی برای این دسته بندی وجود ندارد
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
   );
 }
