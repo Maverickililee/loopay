@@ -260,7 +260,6 @@ export default function AsideFieldAdv({
           </div>
         </aside>
       )}
-
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="hidden xx:flex justify-center items-center btn"
